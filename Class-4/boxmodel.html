@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+    }
+    .good-people{
+        /* box-sizing: border-box; */
+        background-color: red;
+        border: 10px solid black;
+        padding: 10px;
+        /* margin: 10px 20px 30px 40px; */
+        /* single value -> same margin to top bottom left and right */
+        /* margin: x y -> x: top&bottom y: left&right */
+        /* margin: x y z -> x: top y->left&right z->bottom */
+        /* margin: a b c d -> a:top and then clockwise */
+        margin-top: 10px;
+        margin-bottom: 10px;
+        /* padding: 10px 20px 30px 40px; */
+        margin-right: 10px;
+        margin-left: 10px;
+
+        /* border-left: 10px dotted black;  */
+
+        padding-left: 10px;
+        padding-top: 20px;
+
+        border-radius: 10px;
+        width: 400px;
+    }
+    .bad-people{
+        /* box-sizing: content-box; */
+        background-color: red;
+        border: 10px solid black;
+        padding: 10px;
+        margin: 10px; 
+        width: 400px;
+    }
+</style>
+<body>
+
+    <div class="good-people">
+        <h1>Saideep's House</h1>
+    </div>
+    <div class="good-people">
+        <h1>Sanchit's House</h1>
+    </div>
+    <div class="bad-people">
+        <h1>NotSanchit's House</h1>
+    </div>
+    
+</body>
+</html>
