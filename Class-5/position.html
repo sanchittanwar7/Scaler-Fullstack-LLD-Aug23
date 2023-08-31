@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .parent {
+        background-color: tomato;
+        width: 50vw;
+        height: 1000px;
+        margin: auto;
+        position: relative;
+        left: 50px;
+    }
+    .child {
+        background-color: lightblue;
+        width: 30vw;
+        /* margin: 10px; */
+        border: 1px solid black;
+        
+    }
+    /* #special{
+        position: relative;
+        top: 10px;
+        left: 300px;
+        right: 10px;
+        bottom: 20px;
+    } */
+    /* #special {
+        right: 300px;
+        bottom: 50px;
+        position: absolute;
+        
+    } */
+    #special {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+    }
+    #also-special {
+        position: sticky;
+        top: 0px;
+    }
+</style>
+<body>
+
+    <div class="parent">
+        <div class="child">Child 1</div>
+        <div class="child" id="special">Child 2</div>
+        <div class="child">Child 3</div>
+        <div class="child" id="also-special">Child 4</div>
+    </div>
+    
+</body>
+</html>
