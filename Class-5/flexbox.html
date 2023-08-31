@@ -5,7 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    .parent {
+        background-color: tomato;
+        height: 100vh;
+        display: flex;
+        justify-content: space-evenly;
+        /* flex-direction: column; */
+        align-items: center;
+        /* flex-wrap: wrap-reverse; */
+    }
+    .child {
+        background-color: aqua;
+        width: 200px;
+        height: 100px;
+        /* margin: 50px; */
+        border: 1px solid black;
+        text-align: center;
+    }
+    #special {
+        /* order: 3; */
+        flex-grow: 3;
+    }
+    #also-special {
+        /* order: 2 */
+    }
+</style>
 <body>
+    <div class="parent">
+        <div class="child">Child 1</div>
+        <div class="child" id="special">Child 2</div>
+        <div class="child" id="also-special">Child 3</div>
+        <div class="child">Child 4</div>
+    </div>
     
 </body>
 </html>
