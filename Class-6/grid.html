@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .parent {
+        width: 800px;
+        margin: auto;
+        background-color: tomato;
+        padding: 10px;
+
+        display: grid;
+        /* grid-template-columns: 100px 200px 100px; */
+        /* grid-template-columns: 1fr 2fr 1fr; */
+        grid-template-columns: repeat(10, 1fr);
+        /* column-gap: 10px; */
+        /* row-gap: 10px; */
+        /* gap: 5px 5px; */
+        /* grid-template-rows: 1fr 2fr 1fr 2fr; */
+        grid-auto-rows: 100px;
+    }
+    .child {
+        background-color: lightcoral;
+        border: 1px solid black;
+    }
+    #merge-me {
+        /* grid-row: span 2; */
+        /* grid-column: span 2; */
+    }
+    #special {
+        /* width: 50px;
+        height: 50px;
+        justify-self: center;
+        align-self: center; */
+    }
+
+</style>
+<body>
+    <div class="parent">
+        <div class="child" id="merge-me">Child 1</div>
+        <div class="child" id="special">Child 2</div>
+        <div class="child">Child 3</div>
+        <div class="child">Child 4</div>
+        <div class="child">Child 5</div>
+        <div class="child">Child 6</div>
+        <div class="child">Child 7</div>
+        <div class="child">Child 8</div>
+        <div class="child">Child 9</div>
+        <div class="child">Child 10</div>
+    </div>
+
+</body>
+</html>
