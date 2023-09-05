@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .parent {
+        color: orange;
+        display: inline;
+    }
+
+    .parent p {
+        color: purple;
+    }
+
+    p.inherit {
+        color: inherit;
+    }
+
+    p.initial {
+        color: initial;
+    }
+
+    p.unset {
+        /* color: inherit; 
+        display: initial; */
+        all: unset;
+    }
+</style>
+<body>
+    <div class="parent">
+        <p class="inherit">Inherit<p>
+        <p class="initial">Initial<p>
+        <p class="unset">Unset</p>
+        <p>No Property</p>
+    </div>
+</body>
+</html>
