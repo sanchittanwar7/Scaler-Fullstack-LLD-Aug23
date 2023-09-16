@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="hello-btn">Say Hello</button>
+    <button id="bye-btn">Say Bye</button>
+
+    <script>
+      //Q1 on Clicking the Button append hello to the page
+      //The Document method querySelector() returns the first Element within 
+      //the document that matches the specified selector, 
+      //or group of selectors. If no matches are found, null is returned.
+
+      // let btn = document.getElementById('hello')
+      // let btn = document.getElementsByClassName('btn')
+      // let btn = document.querySelectorAll('button')
+      // console.log(btn);
+
+      let helloBtn = document.getElementById('hello-btn');
+      helloBtn.addEventListener('click', function(){
+        console.log("click happened")
+        let para = document.createElement('p');
+        console.log(para)
+        para.innerText = 'Hello'
+        let body = document.querySelector('body')
+        body.appendChild(para)
+        alert('This is an alert')
+      })
+
+      let byeButton = document.getElementById('bye-btn');
+      byeButton.addEventListener('click', function(){
+        let div = document.createElement('div');
+        div.innerText = 'Bye'
+        let body = document.querySelector('body')
+        body.appendChild(div)
+      })
+
+    </script>
+  </body>
+</html>
