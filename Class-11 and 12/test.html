@@ -1,22 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<!doctype html>
 <body>
-    <div>
-        <p>This is a paragraph</p>
-        <h1>This is a heading 1</h1>
-    </div>
-    <div>
-        <div>
-            <span>This is a span</span>
-        </div>
-        <h2>
-            This is heading2
-        </h2>
-    </div>
+<style>
+  body * {
+    margin: 10px;
+    border: 1px solid blue;
+  }
+</style>
+
+<form>FORM
+  <div>DIV
+    <p>P</p>
+  </div>
+</form>
+
+
+<script>
+
+  let allElements = document.querySelectorAll('*')
+
+  allElements.forEach(element => {
+    element.addEventListener('click', event => {
+      console.log(`Phase: ${event.eventPhase}`)
+      console.log(`Name of the element: ${element.tagName}`)
+      console.log(`Target: ${event.target}`)
+      console.log(`Current Target: ${event.currentTarget}`)
+    }, true)
+    element.addEventListener('click', event => {
+      console.log(`Phase: ${event.eventPhase}`)
+      console.log(`Name of the element: ${element.tagName}`)
+      console.log(`Target: ${event.target}`)
+      console.log(`Current Target: ${event.currentTarget}`)
+    })
+
+    let para = document.querySelector('p');
+    para.addEventListener('click', e=>e.stopPropagation())
+  })
+  
+</script>
 </body>
-</html>

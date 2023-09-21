@@ -699,6 +699,40 @@
     <script>
       // Q Implement key taps such that on pressing 1 you scroll to section 1,  pressing 2 you scroll to section 2 and  pressing 3 you scroll to section 3. Also implement key tap b to go to bottom of the page and key tap t to go to top of the page
 
+      let body = document.querySelector('body')
+      let s1 = document.getElementById("s1")
+      let s2 = document.getElementById("s2")
+      let s3 = document.getElementById("s3")
+      body.addEventListener('keydown', event => {
+        console.log(event.key);
+
+        if (event.key == 1) {
+          // scroll to sec 1
+          s1.scrollIntoView()
+        }
+        if (event.key === "2") {
+          // scroll to sec 2
+          s2.scrollIntoView()
+        }
+        if (event.key === "3") {
+          // scroll to sec 3
+          console.log(s3.getBoundingClientRect())
+          s3.scrollIntoView()
+        }
+        let html = document.querySelector('html')
+        console.log(html.getBoundingClientRect())
+        if (event.key === 'b') {
+          let html = document.querySelector('html')
+          console.log(html.getBoundingClientRect())
+          window.scrollBy(0, html.getBoundingClientRect().height)
+        }
+        if (event.key === 't') {
+          let html = document.querySelector('html')
+          console.log(html.getBoundingClientRect())
+          window.scrollBy(0, -html.getBoundingClientRect().height)
+          // window.scrollTo(top)
+        }
+      })
     </script>
   </body>
 </html>
