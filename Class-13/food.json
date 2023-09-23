@@ -1,0 +1,12 @@
+[
+    {
+        "name": "pav bhaji",
+        "price": 100,
+        "isAvailable": true
+    },
+    {
+        "name": "ice cream",
+        "price": 100,
+        "isAvailable": true
+    }
+]
