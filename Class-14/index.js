@@ -3,8 +3,10 @@ let modalCont = document.querySelector('.modal-cont')
 let allPriorityColors = document.querySelectorAll('.pririty-color')
 let textAreaCont = document.querySelector('.textArea-cont')
 let mainCont = document.querySelector('.main-cont')
+let removeBtn = document.querySelector('.remove-btn')
 
 let addTaskFlag = false
+let removeTaskFlag = false
 let modalPriorityColor = 'lightpink'
 
 addBtn.addEventListener('click', (event) => {
@@ -59,7 +61,34 @@ function createTicket (ticketColor, ticketId, ticketDesc) {
 
     ticketCont.innerHTML = `<div class="ticket-color ${ticketColor}"></div><div class="ticket-id">${ticketId}</div><div class="task-area">${ticketDesc}</div>`
 
-    mainCont.appendChild(ticketCont)    
+    mainCont.appendChild(ticketCont)
+    
+    handleRemove(ticketCont)
+}
+
+// Selecting remove button
+removeBtn.addEventListener('click', (event) => {
+    removeTaskFlag = !removeTaskFlag
+
+    if (removeTaskFlag == true) {
+        // show alert
+        alert("Delete mode is activated")
+        // change icon color to red
+        removeBtn.style.color = 'red'
+    } else {
+        // change icon color to white
+        removeBtn.style.color = 'white'
+    }
+})
+
+function handleRemove(ticket) {
+    ticket.addEventListener('click', event => {
+        if (removeTaskFlag == true) {
+            // remove ticket
+            // ticket.style.display = 'none'
+            ticket.remove()
+        }
+    })
 }
 
 
