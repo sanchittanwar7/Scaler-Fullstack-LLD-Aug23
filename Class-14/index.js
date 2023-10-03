@@ -122,7 +122,7 @@ function handleLock(ticket) {
     let taskArea = ticket.querySelector('.task-area')
 
     ticketLockIcon.addEventListener('click', () => {
-        console.log('lock icon is clicked')
+        
         if (ticketLockIcon.classList.contains(lockIconClass)) {
             // remove locked class
             ticketLockIcon.classList.remove(lockIconClass)
@@ -137,7 +137,16 @@ function handleLock(ticket) {
             ticketLockIcon.classList.add(lockIconClass)
             // make ticket uneditable
             taskArea.setAttribute('contenteditable', 'false')
-        }
+
+            // updating ticketArray state with new text
+            let ticketId = ticket.children[1].innerText
+
+            ticketArray.forEach(t => {
+                if (t.ticketId == ticketId) {
+                    t.ticketDesc = taskArea.innerText
+                }
+            })
+        }       
     })
 }
 
@@ -162,12 +171,22 @@ function handleColor(ticket) {
 
         // add new color
         ticketColorBand.classList.add(newColor)
+
+        // updating ticketArray state with new color
+        let ticketId = ticket.children[1].innerText
+
+        ticketArray.forEach(t => {
+            if (t.ticketId == ticketId){
+                t.ticketColor = newColor
+            }
+        })
     })
 }
 
 // implementing filters
 toolboxColors.forEach(toolboxColor => {
     toolboxColor.addEventListener('click', () => {
+        console.log('Single click')
         let selectedToolBoxColor = toolboxColor.classList[0]
 
         let filteredTickets = ticketArray.filter(ticket => {
@@ -187,6 +206,21 @@ toolboxColors.forEach(toolboxColor => {
         // recreate tickets within filtered array
         filteredTickets.forEach(filteredTicket => {
             createTicket(filteredTicket.ticketColor, filteredTicket.ticketId, filteredTicket.ticketDesc)
+        })
+    })
+
+    toolboxColor.addEventListener('dblclick', () => {
+        console.log('Double click')
+        // remove all the tickets from the DOM
+        let allTickets = document.querySelectorAll('.ticket-cont')
+
+        allTickets.forEach(ticket => {
+            ticket.remove()
+        })
+
+        // create all tickets from ticket array
+        ticketArray.forEach(ticket => {
+            createTicket(ticket.ticketColor, ticket.ticketId, ticket.ticketDesc)
         })
     })
 })
