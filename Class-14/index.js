@@ -8,6 +8,9 @@ let removeBtn = document.querySelector('.remove-btn')
 let addTaskFlag = false
 let removeTaskFlag = false
 let modalPriorityColor = 'lightpink'
+let lockIconClass = 'fa-lock'
+let unlockIconClass = 'fa-lock-open'
+let colors = ['lightpink', 'lightgreen', 'lightblue', 'black']
 
 addBtn.addEventListener('click', (event) => {
     addTaskFlag = !addTaskFlag;
@@ -59,11 +62,15 @@ function createTicket (ticketColor, ticketId, ticketDesc) {
 
     ticketCont.classList.add('ticket-cont');
 
-    ticketCont.innerHTML = `<div class="ticket-color ${ticketColor}"></div><div class="ticket-id">${ticketId}</div><div class="task-area">${ticketDesc}</div>`
+    ticketCont.innerHTML = `<div class="ticket-color ${ticketColor}"></div><div class="ticket-id">${ticketId}</div><div class="task-area">${ticketDesc}</div><div class="ticket-lock"><i class="fa-solid fa-lock"></i></div>`
 
     mainCont.appendChild(ticketCont)
     
     handleRemove(ticketCont)
+
+    handleLock(ticketCont)
+
+    handleColor(ticketCont)
 }
 
 // Selecting remove button
@@ -88,6 +95,58 @@ function handleRemove(ticket) {
             // ticket.style.display = 'none'
             ticket.remove()
         }
+    })
+}
+
+// handling lock mechanism
+function handleLock(ticket) {
+    let ticketLockEle = ticket.querySelector('.ticket-lock')
+
+    let ticketLockIcon = ticketLockEle.children[0]
+
+    let taskArea = ticket.querySelector('.task-area')
+
+    ticketLockIcon.addEventListener('click', () => {
+        console.log('lock icon is clicked')
+        if (ticketLockIcon.classList.contains(lockIconClass)) {
+            // remove locked class
+            ticketLockIcon.classList.remove(lockIconClass)
+            // add unlocked class
+            ticketLockIcon.classList.add(unlockIconClass)
+            // make the ticket editable
+            taskArea.setAttribute('contenteditable', 'true')
+        } else {
+            // remove unlocked class
+            ticketLockIcon.classList.remove(unlockIconClass)
+            // add locked class
+            ticketLockIcon.classList.add(lockIconClass)
+            // make ticket uneditable
+            taskArea.setAttribute('contenteditable', 'false')
+        }
+    })
+}
+
+// change ticket priority
+function handleColor(ticket) {
+    let ticketColorBand = ticket.querySelector('.ticket-color')
+
+    ticketColorBand.addEventListener('click', () => {
+        let currentColor = ticketColorBand.classList[1]
+
+        let currentColorIndex = colors.findIndex(color => {
+            return color == currentColor
+        })
+
+        currentColorIndex++
+
+        let newColorIndex = currentColorIndex % colors.length
+        let newColor = colors[newColorIndex]
+
+        // remove current color
+        ticketColorBand.classList.remove(currentColor)
+
+        // add new color
+        ticketColorBand.classList.add(newColor)
     })
 }
 
