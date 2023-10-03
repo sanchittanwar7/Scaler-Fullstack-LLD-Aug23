@@ -4,6 +4,7 @@ let allPriorityColors = document.querySelectorAll('.pririty-color')
 let textAreaCont = document.querySelector('.textArea-cont')
 let mainCont = document.querySelector('.main-cont')
 let removeBtn = document.querySelector('.remove-btn')
+let toolboxColors = document.querySelectorAll('.color')
 
 let addTaskFlag = false
 let removeTaskFlag = false
@@ -11,10 +12,10 @@ let modalPriorityColor = 'lightpink'
 let lockIconClass = 'fa-lock'
 let unlockIconClass = 'fa-lock-open'
 let colors = ['lightpink', 'lightgreen', 'lightblue', 'black']
+let ticketArray = []
 
 addBtn.addEventListener('click', (event) => {
     addTaskFlag = !addTaskFlag;
-    console.log('Add button is clicked')
 
     if (addTaskFlag == true) {
         //show
@@ -65,6 +66,20 @@ function createTicket (ticketColor, ticketId, ticketDesc) {
     ticketCont.innerHTML = `<div class="ticket-color ${ticketColor}"></div><div class="ticket-id">${ticketId}</div><div class="task-area">${ticketDesc}</div><div class="ticket-lock"><i class="fa-solid fa-lock"></i></div>`
 
     mainCont.appendChild(ticketCont)
+
+    let ticketMetadata = {
+        ticketColor,
+        ticketId,
+        ticketDesc
+    }
+
+    // let ticketMetadata = {
+    //     "ticketColor": ticketColor,
+    //     "ticketId": ticketId,
+    //     "ticketDesc": ticketDesc
+    // }
+
+    ticketArray.push(ticketMetadata)
     
     handleRemove(ticketCont)
 
@@ -150,5 +165,29 @@ function handleColor(ticket) {
     })
 }
 
+// implementing filters
+toolboxColors.forEach(toolboxColor => {
+    toolboxColor.addEventListener('click', () => {
+        let selectedToolBoxColor = toolboxColor.classList[0]
 
+        let filteredTickets = ticketArray.filter(ticket => {
+            return selectedToolBoxColor == ticket.ticketColor
+        })
+
+        console.log("Filtered tickets: ", filteredTickets)
+        console.log("All tickets: ", ticketArray)
+
+        let allTickets = document.querySelectorAll('.ticket-cont')
+
+        // remove all tickets
+        allTickets.forEach(ticket => {
+            ticket.remove();
+        })
+
+        // recreate tickets within filtered array
+        filteredTickets.forEach(filteredTicket => {
+            createTicket(filteredTicket.ticketColor, filteredTicket.ticketId, filteredTicket.ticketDesc)
+        })
+    })
+})
 
