@@ -48,8 +48,8 @@ modalCont.addEventListener('keydown', event => {
     if (keyPressed === 'Shift') {
         // ticket create
         let ticketDesc = textAreaCont.value
-        let ticketId = shortid()
-        createTicket(modalPriorityColor, ticketId, ticketDesc)
+        // let ticketId = shortid()
+        createTicket(modalPriorityColor, ticketDesc)
         // close modal
         modalCont.style.display = 'none'
         addTaskFlag = !addTaskFlag
@@ -58,18 +58,20 @@ modalCont.addEventListener('keydown', event => {
     }
 })
 
-function createTicket (ticketColor, ticketId, ticketDesc) {
+function createTicket (ticketColor, ticketDesc, ticketId) {
+    let id = ticketId || shortid()
+
     let ticketCont = document.createElement('div')
 
     ticketCont.classList.add('ticket-cont');
 
-    ticketCont.innerHTML = `<div class="ticket-color ${ticketColor}"></div><div class="ticket-id">${ticketId}</div><div class="task-area">${ticketDesc}</div><div class="ticket-lock"><i class="fa-solid fa-lock"></i></div>`
+    ticketCont.innerHTML = `<div class="ticket-color ${ticketColor}"></div><div class="ticket-id">${id}</div><div class="task-area">${ticketDesc}</div><div class="ticket-lock"><i class="fa-solid fa-lock"></i></div>`
 
     mainCont.appendChild(ticketCont)
 
     let ticketMetadata = {
         ticketColor,
-        ticketId,
+        ticketId: id,
         ticketDesc
     }
 
@@ -79,7 +81,13 @@ function createTicket (ticketColor, ticketId, ticketDesc) {
     //     "ticketDesc": ticketDesc
     // }
 
-    ticketArray.push(ticketMetadata)
+    
+    // if freshly created ticket
+    // then only push to ticketArray
+    // otherwise, dont push (case of ticket recreation)
+    if (!ticketId) {
+        ticketArray.push(ticketMetadata)
+    }
     
     handleRemove(ticketCont)
 
@@ -105,9 +113,15 @@ removeBtn.addEventListener('click', (event) => {
 
 function handleRemove(ticket) {
     ticket.addEventListener('click', event => {
-        if (removeTaskFlag == true) {
-            // remove ticket
-            // ticket.style.display = 'none'
+        if (removeTaskFlag) {
+            // remove ticket - ticketArray
+            let ticketId = ticket.children[1].innerText
+            let ticketIndex = ticketArray.findIndex(t => {
+                t.ticketId == ticketId
+            })
+            ticketArray.splice(ticketIndex, 1)
+
+            // remove ticket - ui removal
             ticket.remove()
         }
     })
