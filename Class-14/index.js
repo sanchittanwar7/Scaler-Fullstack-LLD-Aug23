@@ -87,6 +87,7 @@ function createTicket (ticketColor, ticketDesc, ticketId) {
     // otherwise, dont push (case of ticket recreation)
     if (!ticketId) {
         ticketArray.push(ticketMetadata)
+        localStorage.setItem('tickets', JSON.stringify(ticketArray))
     }
     
     handleRemove(ticketCont)
@@ -117,9 +118,12 @@ function handleRemove(ticket) {
             // remove ticket - ticketArray
             let ticketId = ticket.children[1].innerText
             let ticketIndex = ticketArray.findIndex(t => {
-                t.ticketId == ticketId
+                return t.ticketId == ticketId
             })
             ticketArray.splice(ticketIndex, 1)
+
+            // update local storage
+            localStorage.setItem('tickets', JSON.stringify(ticketArray))
 
             // remove ticket - ui removal
             ticket.remove()
@@ -160,6 +164,9 @@ function handleLock(ticket) {
                     t.ticketDesc = taskArea.innerText
                 }
             })
+
+            // update local storage
+            localStorage.setItem('tickets', JSON.stringify(ticketArray))
         }       
     })
 }
@@ -194,6 +201,9 @@ function handleColor(ticket) {
                 t.ticketColor = newColor
             }
         })
+
+        // update local storage
+        localStorage.setItem('tickets', JSON.stringify(ticketArray))
     })
 }
 
@@ -207,9 +217,6 @@ toolboxColors.forEach(toolboxColor => {
             return selectedToolBoxColor == ticket.ticketColor
         })
 
-        console.log("Filtered tickets: ", filteredTickets)
-        console.log("All tickets: ", ticketArray)
-
         let allTickets = document.querySelectorAll('.ticket-cont')
 
         // remove all tickets
@@ -219,7 +226,7 @@ toolboxColors.forEach(toolboxColor => {
 
         // recreate tickets within filtered array
         filteredTickets.forEach(filteredTicket => {
-            createTicket(filteredTicket.ticketColor, filteredTicket.ticketId, filteredTicket.ticketDesc)
+            createTicket(filteredTicket.ticketColor, filteredTicket.ticketDesc, filteredTicket.ticketId)
         })
     })
 
@@ -234,8 +241,18 @@ toolboxColors.forEach(toolboxColor => {
 
         // create all tickets from ticket array
         ticketArray.forEach(ticket => {
-            createTicket(ticket.ticketColor, ticket.ticketId, ticket.ticketDesc)
+            createTicket(ticket.ticketColor, ticket.ticketDesc, ticket.ticketId)
         })
     })
 })
+
+// local storage
+let ticketsLocalStorage = localStorage.getItem('tickets')
+if (ticketsLocalStorage) {
+    ticketArray = JSON.parse(ticketsLocalStorage)
+    ticketArray.forEach(ticket => {
+        createTicket(ticket.ticketColor, ticket.ticketDesc, ticket.ticketId)
+    })
+}
+
 
