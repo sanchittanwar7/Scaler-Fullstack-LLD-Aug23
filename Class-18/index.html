@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            min-height: 200px;
+            padding: 20px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="grandparent">
+        <div class="parent">
+            <div class="child">
+
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let grandparent = document.querySelector('.grandparent')
+    let parent = document.querySelector('.parent')
+    let child = document.querySelector('.child')
+
+    grandparent.addEventListener('click', () => {
+        console.log('grandparent is clicked', event.eventPhase)
+    }, false)
+    parent.addEventListener('click', () => {
+        console.log('parent is clicked', event.eventPhase)
+    }, true)
+    child.addEventListener('click', () => {
+        console.log('child is clicked', event.eventPhase)
+    }, true)
+    child.addEventListener('click', () => {
+        console.log('child is clicked', event.eventPhase)
+    }, false)
+</script>
+</html>
