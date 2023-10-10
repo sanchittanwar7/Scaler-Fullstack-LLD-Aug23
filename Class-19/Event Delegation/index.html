@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="categories">
+        <li id="headphone">Headphones</li>
+        <li id="mobile">Mobile Phones</li>
+        <li id="laptop">Laptops</li>
+    </div>
+    
+</body>
+<script>
+    // Approach 1
+    // let categories = document.querySelectorAll('li')
+    // categories.forEach(category => {
+    //     category.addEventListener('click', () => {
+    //         console.log(`${category.id} is clicked`)
+    //     })
+    // })
+
+    // Approach 2
+    let categories = document.querySelector('.categories')
+    categories.addEventListener('click', event => {
+        console.log(`${event.target.id} is clicked`)
+    })
+</script>
+</html>
