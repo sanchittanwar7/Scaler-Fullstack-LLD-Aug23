@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" class="normal" placeholder="normal">
+    <input type="text" class="debouncing" placeholder="debouncing">
+</body>
+<script>
+    let inputFieldNormal = document.querySelector('.normal')
+    let inputFieldDebouncing = document.querySelector('.debouncing')
+
+    function getItemsRecommendationNormal() {
+        let searchText = inputFieldNormal.value
+        console.log(`GET items for ${searchText}`)
+    }
+
+    function getItemsRecommendationDebouncing() {
+        let searchText = inputFieldDebouncing.value
+        console.log(`Debounce :: GET items for ${searchText}`)
+    }
+
+    // Debouncing
+    function debounce(func, delay) {
+        let timerId
+        // console.log("Im called")
+
+        const debouncedSearch = () => {
+            // implement debouncing
+            clearTimeout(timerId)
+
+            timerId = setTimeout(function() {
+                func()
+            }, delay)
+        }
+
+        return debouncedSearch
+    }
+
+    let autocompleteNormal = getItemsRecommendationNormal
+    let autocompleteDebouncing = debounce(getItemsRecommendationDebouncing, 3000)
+
+    inputFieldNormal.addEventListener('keyup', autocompleteNormal);
+    inputFieldDebouncing.addEventListener('keyup', autocompleteDebouncing);
+
+</script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        height: 200px;
+        width: 200px;
+        background-color: tomato;
+    }
+</style>
+<body>
+    <div>
+        I am the the Div
+    </div>
+</body>
+<script>
+    const startAnimation = () => {
+        let div = document.querySelector('div')
+        div.style.width = '400px'
+    }
+    const startAnimation2 = () => {
+        let div = document.querySelector('div')
+        div.style.height = '400px'
+    }
+
+    let startAnimationId = setTimeout(startAnimation, 5000)
+    let startAnimation2Id = setTimeout(startAnimation2, 3000)
+
+    clearTimeout(1)
+
+    let startAnimation3Id = setTimeout(startAnimation, 5000)
+
+    console.log(startAnimationId)
+    console.log(startAnimation2Id)
+    console.log(startAnimation3Id)
+</script>
+</html>
