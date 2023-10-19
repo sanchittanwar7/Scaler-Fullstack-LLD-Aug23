@@ -2,7 +2,10 @@ let HPLaptop = {
     name:'HP',
     ram:'8',
     price:'40000',
-    storage:'512'
+    storage:'512',
+    run: function run(){
+
+    }
 }
 
 let DellLaptop = {
