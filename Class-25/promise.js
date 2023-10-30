@@ -10,7 +10,6 @@ let promise = new Promise((resolve, reject) => {
     }
 })
 
-
 // then method
 promise.then(data => {
     // do something
