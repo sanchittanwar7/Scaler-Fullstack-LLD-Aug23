@@ -43,12 +43,16 @@ let generateBill = processOrderStatus => {
 // Async Await
 
 async function serveOrder() {
-    let orderStatus = await placeOrder('coffee')
-    console.log(orderStatus)
-    let processOrderStatus = await processOrder(orderStatus)
-    console.log(processOrderStatus)
-    let billGenerated = await generateBill(processOrderStatus)
-    console.log(billGenerated)
+    try {
+        let orderStatus = await placeOrder('tea')
+        console.log(orderStatus)
+        let processOrderStatus = await processOrder(orderStatus)
+        console.log(processOrderStatus)
+        let billGenerated = await generateBill(processOrderStatus)
+        console.log(billGenerated)
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 serveOrder()
