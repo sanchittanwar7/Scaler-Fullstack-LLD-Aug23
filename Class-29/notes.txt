@@ -1,0 +1,12 @@
+Agenda:
+Prerequisites:
+1. HTML/CSS
+2. Javascripts fundamentals
+3. DOM
+4. Modularity
+5. NodeJS
+
+Advantages of Modularity:
+1. Readibility
+2. Maintainability/organised/loosely coupled (not dependent of each other)
+3. Reusability
