@@ -6,7 +6,13 @@ Prerequisites:
 4. Modularity
 5. NodeJS
 
+Module
+A module is a function or group of similar functions. They are grouped together within a file and contain the code to execute a specific task when called into a larger application.
+
 Advantages of Modularity:
 1. Readibility
 2. Maintainability/organised/loosely coupled (not dependent of each other)
 3. Reusability
+
+ReactJS
+React is a free and open-source front-end JavaScript library for building user interfaces based on components. It is maintained by Meta and a community of individual developers and companies. React can be used to develop single-page, mobile, or server-rendered applications 

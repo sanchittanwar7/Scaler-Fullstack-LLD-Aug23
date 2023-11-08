@@ -28,11 +28,28 @@
     // console.log(React)
     // console.log(ReactDOM)
 
-    let root = ReactDOM.createRoot(document.getElementById('root'))
-    let greeting = React.createElement('h1', {id: "greeting", className: "greeting"}, 'Hi from React')
-    // console.log(greeting)
+    // let root = ReactDOM.createRoot(document.getElementById('root'))
+    // let greeting = React.createElement('h1', {id: "greeting", className: "greeting"}, 'Hi from React')
+    // // console.log(greeting)
+    // root.render(greeting)
+
+    let root = ReactDOM.createRoot(document.getElementById('root'));
+    let greeting = React.createElement( 'h1', { id: 'greeting', className: 'greeting' }, 
+    React.createElement( 'div', { className: 'parent' }, 
+    React.createElement( 'div', { className: 'child' }, 
+    React.createElement( 'div', { className: 'grandChild' }, 'Hi from grandchild' ) ) ) );
+
     root.render(greeting)
 
+    // let root = ReactDOM.createRoot(document.getElementById('root')) 
+    // let greeting = React.createElement('h1', {id: "greeting", className: "greeting"}, 'Hi from React') 
+    // let parent = React.createElement('div', {className:'parent'}) 
+    // let child = React.createElement('div', {className:'child'}) 
+    // let grandChild = React.createElement('div', {className:'grandChild'}) 
+    // parent.render(child) 
+    // child.render(grandChild)
+    // root.render(greeting) 
+    
 
 </script>
 </html>
