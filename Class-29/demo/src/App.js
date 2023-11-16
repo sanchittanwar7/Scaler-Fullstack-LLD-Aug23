@@ -3,6 +3,8 @@ import MyComponent2 from "./components/MyComponent2"; // default export
 import { sayHi, sayBye } from "./components/MyComponent"; // named export
 import UserProfile from "./components/UserProfile";
 import Counter from "./components/Counter";
+import Products from "./components/Products";
+import Form from "./components/Form";
 
 function App(props) {
   sayBye(20)
@@ -17,7 +19,9 @@ function App(props) {
       {/* <UserProfile name='Muqeeth' age={26} company='Atlassian'/>
       <UserProfile name='Partiban' age={26} company='Atlassian'/>
       <UserProfile name='Ritik' age={26} company='Atlassian'/> */}
-      <Counter />
+      {/* <Counter /> */}
+      {/* <Products /> */}
+      <Form />
     </div>
   );
 }
