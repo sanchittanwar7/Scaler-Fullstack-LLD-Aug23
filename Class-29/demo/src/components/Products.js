@@ -1,4 +1,4 @@
-import React, { Profiler } from 'react'
+import React from 'react'
 
 const Products = () => {
     // const products = ['Laptop', 'Headphone', 'Smart Watch', 'Headphone']

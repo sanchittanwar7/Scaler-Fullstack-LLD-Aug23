@@ -5,6 +5,7 @@ import UserProfile from "./components/UserProfile";
 import Counter from "./components/Counter";
 import Products from "./components/Products";
 import Form from "./components/Form";
+import MultipleInputForm from "./components/MultipleInputForm";
 
 function App(props) {
   sayBye(20)
@@ -19,9 +20,10 @@ function App(props) {
       {/* <UserProfile name='Muqeeth' age={26} company='Atlassian'/>
       <UserProfile name='Partiban' age={26} company='Atlassian'/>
       <UserProfile name='Ritik' age={26} company='Atlassian'/> */}
-      {/* <Counter /> */}
+      <Counter />
       {/* <Products /> */}
-      <Form />
+      {/* <Form /> */}
+      {/* <MultipleInputForm /> */}
     </div>
   );
 }
