@@ -7,6 +7,7 @@ const Movies = () => {
   const [moviesData, setMoviesData] = useState([])
   const [pageNumber, setPageNumber] = useState(1)
   const [watchlist, setWatchlist] = useState([])
+  const [hovered, setHovered] = useState('')
 
   // BASE URL (name of your func): https://api.themoviedb.org
   // PARAMETER: 1. Path params 2. Query params
@@ -61,14 +62,27 @@ const Movies = () => {
     return watchlist.includes(movieId)
   }
 
+  const showButton = (movieId) => {
+    setHovered(movieId)
+  }
+  const removeButton = () => {
+    setHovered('')
+  }
+
   const getMovieCard = movie => {
     return <div key={movie.id}
               className='w-[160px] h-[30vh] bg-center bg-cover m-4 md:h-[40vh] md:w-[180px] relative rounded-xl hover:scale-110 duration-300 flex items-end'
               style={{
                 backgroundImage: `url(https://image.tmdb.org/t/p/original/t/p/w500/${movie.poster_path})`
               }}
+              onMouseOver={() => showButton(movie.id)}
+              onMouseLeave={removeButton}
             >
-              <div className='text-2xl p-2 bg-gray-200 rounded-xl absolute top-2 right-2'>
+              <div className='text-2xl p-2 bg-gray-200 rounded-xl absolute top-2 right-2'
+                style={{
+                  display: hovered === movie.id ? 'block' : 'none'
+                }}
+              >
                 {
                   isAddedToWatchlist(movie.id) ? showRemoveIcon(movie.id) : showAddIcon(movie.id)
                 }
@@ -76,7 +90,6 @@ const Movies = () => {
               <div className='text-white font-bold text-center w-full bg-gray-900 bg-opacity-60'>
                 {movie.original_title}
               </div>
-
             </div>
   }
 
