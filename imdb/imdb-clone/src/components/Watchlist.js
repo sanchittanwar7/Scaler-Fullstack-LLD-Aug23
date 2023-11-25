@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Watchlist = () => {
   let movies = [
@@ -75,11 +75,58 @@ const Watchlist = () => {
       vote_count: 1694,
     },
   ];
+  const [favourites, setFavourites] = useState([])
+  const [genre, setGenre] = useState([])
+
+  useEffect(() => {
+    let watchlistFromLocalStorage = JSON.parse(localStorage.getItem('imdb') || '[]')
+    setFavourites(watchlistFromLocalStorage)
+  }, [])
+
+  useEffect(() => {
+    let listOfListOfGenreIdsOfFavMovies = favourites.map(movie => movie.genre_ids)
+    console.log(listOfListOfGenreIdsOfFavMovies)
+    let listOfGenresFromAllMovies = listOfListOfGenreIdsOfFavMovies.reduce((acc, t) => {
+      let genreName = t.map(genreId => genreIDs[genreId])
+      acc = [...acc, ...genreName]
+      return acc
+    }, [])
+    console.log(listOfGenresFromAllMovies)
+    let listOfUniqueGenre = new Set(listOfGenresFromAllMovies)
+    console.log(listOfUniqueGenre)
+    setGenre(listOfUniqueGenre)
+  }, [favourites])
+
+  let genreIDs = {
+    28: "Action",
+    12: "Adventure",
+    16: "Animation",
+    35: "Comedy",
+    80: "Crime",
+    99: "Documentary",
+    18: "Drama",
+    10751: "Family",
+    14: "Fantasy",
+    36: "History",
+    27: "Horror",
+    10402: "Music",
+    9648: "Mystery",
+    10749: "Romance",
+    878: "Sci-Fi",
+    10770: "TV",
+    53: "Thriller",
+    10752: "War",
+    37: "Western",
+  };
+
   const getWatchListRow = (movie) => {
-    console.log(movie)
     return <tr>
             <td className='flex items-center px-6 py-4 font-normal text-gray-900 space-x-2'>
-              <img src={`https://image.tmdb.org/t/p/original/t/p/w500/${movie.poster_path}`} className="h-[6rem]  w-[10rem] object-fit" />
+              <img 
+                src={`https://image.tmdb.org/t/p/original/t/p/w500/${movie.poster_path}`}
+                className="h-[6rem]  w-[10rem] object-fit"
+                alt='movie poster'
+              />
               <div className="font-medium text-gray-700  text-sm">{movie.original_title}</div>
             </td>
             <td className=" pl-6 py-4">
@@ -89,7 +136,10 @@ const Watchlist = () => {
               {movie.popularity}
             </td>
             <td className=" pl-6 py-4">
-              {movie.genre_ids}
+              {movie.genre_ids.map(id => `${genreIDs[id]} `)}
+            </td>
+            <td className='py-4'>
+              Action
             </td>
           </tr>
   }
@@ -112,11 +162,10 @@ const Watchlist = () => {
         </thead>
         <tbody className='divide-y divide-gray-100 border-t border-gray-100'>
           {
-            movies.map(movie => {
+            favourites.map(movie => {
               return getWatchListRow(movie)
             })
-          }
-          
+          }          
         </tbody>
       </table>
     </div>

@@ -22,6 +22,11 @@ const Movies = () => {
 
   useEffect(() => {
     getTrendingMoviesData()
+    let watchlistFromLocalStorage = JSON.parse(localStorage.getItem('imdb') || '[]')
+    // if (watchlistFromLocalStorage != null) {
+    //   setWatchlist(watchlistFromLocalStorage)
+    // }
+    setWatchlist(watchlistFromLocalStorage)
   }, [pageNumber])
 
   const nextPage = () => {
@@ -30,36 +35,39 @@ const Movies = () => {
   const previousPage = () => {
     if(pageNumber > 1) {
       setPageNumber(pageNumber-1)
-
     }
   }
 
-  const addToWatchlist = (movieId) => {
-    let updatedWatchList = [...watchlist, movieId]
+  const addToWatchlist = (movie) => {
+    let updatedWatchList = [...watchlist, movie]
     setWatchlist(updatedWatchList)
+    localStorage.setItem('imdb', JSON.stringify(updatedWatchList))
   }
 
-  const removeFromWatchlist = (movieId) => {
-    let updatedWatchList = watchlist.filter(watchlistId => {
-      return watchlistId !== movieId
+  const removeFromWatchlist = (movie) => {
+    let updatedWatchList = watchlist.filter(watchlistMovie => {
+      return watchlistMovie.id !== movie.id
     })
     setWatchlist(updatedWatchList)
+    localStorage.setItem('imdb', JSON.stringify(updatedWatchList))
   }
 
-  const showAddIcon = (movieId) => {
-    return <div onClick={() => addToWatchlist(movieId)}>
+  const showAddIcon = (movie) => {
+    return <div onClick={() => addToWatchlist(movie)}>
               +
             </div>
   }
 
-  const showRemoveIcon = (movieId) => {
-    return <div onClick={() => removeFromWatchlist(movieId)}>
+  const showRemoveIcon = (movie) => {
+    return <div onClick={() => removeFromWatchlist(movie)}>
               X
             </div>
   }
 
   const isAddedToWatchlist = (movieId) => {
-    return watchlist.includes(movieId)
+    return watchlist.some(movie => {
+      return movie.id === movieId
+    })
   }
 
   const showButton = (movieId) => {
@@ -84,7 +92,7 @@ const Movies = () => {
                 }}
               >
                 {
-                  isAddedToWatchlist(movie.id) ? showRemoveIcon(movie.id) : showAddIcon(movie.id)
+                  isAddedToWatchlist(movie.id) ? showRemoveIcon(movie) : showAddIcon(movie)
                 }
               </div>
               <div className='text-white font-bold text-center w-full bg-gray-900 bg-opacity-60'>
