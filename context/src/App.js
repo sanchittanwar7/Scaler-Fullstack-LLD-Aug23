@@ -4,6 +4,9 @@ import Family from './components/Family';
 import FamilyContext from './components/context/FamilyContext';
 import { Context, Context2 } from './components/context/Context';
 import { useState } from 'react';
+import Reference from './components/Reference';
+import Form from './components/Form';
+import Memo1 from './components/Memo1';
 
 function App() {
   const familyDetails = {
@@ -24,11 +27,14 @@ function App() {
   
   return (
     <div className="App">
-      <Context.Provider value={familyDetails}>
+      {/* <Context.Provider value={familyDetails}>
         <Context2.Provider value={state}>
           <FamilyContext />
         </Context2.Provider>
-      </Context.Provider>
+      </Context.Provider> */}
+      {/* <Reference /> */}
+      {/* <Form /> */}
+      <Memo1 />
     </div>
   );
 }
