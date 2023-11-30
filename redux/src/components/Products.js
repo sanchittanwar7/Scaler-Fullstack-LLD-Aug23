@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { add } from '../store/cartSlice'
 
 const Products = () => {
 
@@ -13,8 +15,10 @@ const Products = () => {
         getProducts()
     }, [])
 
+    const dispatcher = useDispatch()
+
     const addToCart = product => {
-        console.log(product)
+        dispatcher(add(product))
     }
 
   return (
