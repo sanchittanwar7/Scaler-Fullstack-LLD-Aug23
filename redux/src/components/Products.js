@@ -1,24 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { add } from '../store/cartSlice'
+import { STATUS, fetchProduct } from '../store/productSlice'
 
 const Products = () => {
 
-    const [products, setProducts] = useState([])
+    // const [products, setProducts] = useState([])
+
+    const {data : products, status} = useSelector(state => state.product)
 
     useEffect(() => {
-        const getProducts = async () => {
-            const response = await axios.get('https://fakestoreapi.com/products')
-            setProducts(response.data)
-        }
-        getProducts()
+        // const getProducts = async () => {
+        //     const response = await axios.get('https://fakestoreapi.com/products')
+        //     setProducts(response.data)
+        // }
+        // getProducts()
+        dispatcher(fetchProduct())
     }, [])
 
     const dispatcher = useDispatch()
 
     const addToCart = product => {
         dispatcher(add(product))
+    }
+
+    if (status === STATUS.LOADING) {
+        return <h2>Loading</h2>
+    }
+
+    if (status === STATUS.ERROR) {
+        return <h2>Something went wrong</h2>
     }
 
   return (
