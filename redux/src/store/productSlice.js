@@ -34,6 +34,14 @@ const productSlice = createSlice({
     }
 })
 
+export const fetchProduct = createAsyncThunk('product', async () => {
+    const response = await axios.get('https://fakestoreapi.com/products')
+    return response.data
+})
+
+export const {setProduct, setStatus} = productSlice.actions
+export default productSlice.reducer
+
 // export const fetchProduct = () => {
 //     return async function fetchProductThunk (dispatcher) {
 //         dispatcher(setStatus(STATUS.LOADING))
@@ -47,11 +55,3 @@ const productSlice = createSlice({
 //         }
 //     }
 // }
-
-export const fetchProduct = createAsyncThunk('product', async () => {
-    const response = await axios.get('https://fakestoreapi.com/products')
-    return response.data
-})
-
-export const {setProduct, setStatus} = productSlice.actions
-export default productSlice.reducer
