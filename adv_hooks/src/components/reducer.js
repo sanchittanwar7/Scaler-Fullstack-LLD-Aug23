@@ -28,6 +28,7 @@ const formReducer = (state, action) => {
         case "HANDLE_TASK": {
             const key = action.field;
             const value = action.payload;
+            // const {key, value} = action.payload
             return {...state, [key]: value};
         }
 
