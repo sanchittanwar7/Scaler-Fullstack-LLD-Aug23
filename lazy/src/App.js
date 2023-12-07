@@ -2,6 +2,7 @@ import { useState, lazy, Suspense } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Comp from './components/Comp';
 // import Home from './pages/Home';
 // import About from './pages/About';
 // import Products from './pages/Products';
@@ -33,7 +34,7 @@ function App() {
 
       
 
-        <BrowserRouter>
+        {/* <BrowserRouter>
         <Navbar />
         <Suspense fallback={<h2>Loading....</h2>}>
         <Routes>
@@ -43,7 +44,10 @@ function App() {
           <Route path='/chat' element={<Chat />}></Route>
         </Routes>
         </Suspense>
-        </BrowserRouter>
+        </BrowserRouter> */}
+
+        <Comp dark />
+        <Comp light />
 
     </div>
   );
