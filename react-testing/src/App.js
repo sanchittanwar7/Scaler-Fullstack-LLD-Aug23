@@ -1,10 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
+import Login from './components/Login';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1 data-testid='test-id-1'>Hello</h1>
         <p>
@@ -24,7 +25,8 @@ function App() {
         <li>2</li>
         <li>3</li>
         <li>4</li>
-      </ul>
+      </ul> */}
+      <Login />
     </div>
   );
 }
