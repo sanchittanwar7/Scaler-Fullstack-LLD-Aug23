@@ -1,5 +1,4 @@
-import { PASSWORD } from './credentials'
-
+const PASSWORD = require('./credentials').PASSWORD
 const mongoose = require('mongoose')
 
 const DB = `mongodb+srv://sanchittanwar1:${PASSWORD}@cluster0.bzn1zyg.mongodb.net/?retryWrites=true&w=majority`
