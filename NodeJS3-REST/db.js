@@ -1,7 +1,8 @@
+import { PASSWORD } from './credentials'
+
 const mongoose = require('mongoose')
 
-
-const DB = 'mongodb+srv://sanchittanwar1:Z9o7rUAQs79vWMp5@cluster0.bzn1zyg.mongodb.net/?retryWrites=true&w=majority'
+const DB = `mongodb+srv://sanchittanwar1:${PASSWORD}@cluster0.bzn1zyg.mongodb.net/?retryWrites=true&w=majority`
 
 mongoose.connect(DB, {
     useNewUrlParser: true,
