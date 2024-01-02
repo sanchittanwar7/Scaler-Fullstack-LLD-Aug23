@@ -18,6 +18,7 @@ const courseSchema = new mongoose.Schema({
     name: String,
     creator: String,
     publishedDate: {type: Date, default: Date.now},
+    lastUpdated: {type: Date, default: Date.now},
     isPublished: Boolean,
     rating: Number,
     something: [{
@@ -79,6 +80,7 @@ async function updateRecord(id) {
     // course.creator = 'Pranav'
     // course.name = 'Python'
     course.rating = 5.0
+    course.lastUpdated = Date.now
 
     const updatedCourse = await course.save()
     console.log(updatedCourse)
