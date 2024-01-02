@@ -6,6 +6,6 @@ mongoose.connect(mongoURL)
 
 const connection = mongoose.connection
 
-connection.on('connect', () => {
+connection.on('connected', () => {
     console.log('DB connected')
 })
