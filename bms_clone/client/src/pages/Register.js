@@ -37,7 +37,7 @@ const Register = () => {
           </Form.Item>
 
           <div className="flex flex-col mt-2 gap-1">
-            <Button fullWidth title="REGISTER" type="primary"> Register </Button>
+            <Button fullWidth htmlType="submit" type="primary"> Register </Button>
             <Link to="/login" className="text-primary">
               {" "}
               Already have an account? Login

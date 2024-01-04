@@ -30,7 +30,7 @@ const Login = () => {
             </Form.Item>
     
             <div className="flex flex-col mt-2 gap-1">
-              <Button fullWidth title="LOGIN" type="primary"> Log in </Button>
+              <Button fullWidth htmlType='submit' type="primary"> Log in </Button>
               <Link to="/register" className="text-primary">
                 {" "}
                 Don't have an account? Register
