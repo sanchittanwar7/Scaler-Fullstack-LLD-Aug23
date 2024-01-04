@@ -9,6 +9,7 @@ const Register = () => {
       const response = await RegisterUser(values);
       if (response.success) {
         message.success(response.message);
+        window.location.href = '/'
       } else {
         message.error(response.message);
       }
