@@ -1,11 +1,21 @@
 import React from "react";
-import { Form, Button } from "antd";
+import { Form, Button, message } from "antd";
 import { Link } from "react-router-dom";
+import { RegisterUser } from "../apicalls/users";
 
 const Register = () => {
-    const onFinish = () => {
-        console.log('User registered')
+  const onFinish = async (values) => {
+    try {
+      const response = await RegisterUser(values);
+      if (response.success) {
+        message.success(response.message);
+      } else {
+        message.error(response.message);
+      }
+    } catch (error) {
+      message.error(error);
     }
+  };
   return (
     <div className="flex justify-center h-screen items-center bg-primary">
       <div className="card p-3 w-400">
@@ -37,7 +47,10 @@ const Register = () => {
           </Form.Item>
 
           <div className="flex flex-col mt-2 gap-1">
-            <Button fullWidth htmlType="submit" type="primary"> Register </Button>
+            <Button fullWidth htmlType="submit" type="primary">
+              {" "}
+              Register{" "}
+            </Button>
             <Link to="/login" className="text-primary">
               {" "}
               Already have an account? Login
