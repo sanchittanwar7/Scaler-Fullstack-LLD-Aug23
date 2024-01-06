@@ -9,7 +9,7 @@ import { message } from "antd"
 const ProtectedRoute = ({children}) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const user = useSelector(state => state.users)
+    const user = useSelector(state => state.users).user
     const getCurrentUser = async () => {
         try {
             // show loader
@@ -43,6 +43,8 @@ const ProtectedRoute = ({children}) => {
             navigate("/login")
         }        
     }
+
+    console.log(user)
 
     useEffect(() => {
         if (localStorage.getItem("token")) {

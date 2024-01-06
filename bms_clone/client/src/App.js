@@ -10,6 +10,8 @@ import "./stylesheets/custom.css"
 import "./stylesheets/form-elements.css"
 import "./stylesheets/sizes.css"
 import ProtectedRoute from './components/ProtectedRoute';
+import Profile from './pages/Profile';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<ProtectedRoute><Home /></ProtectedRoute>}></Route>
+          <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute>}></Route>
+          <Route path='/admin' element={<ProtectedRoute><Admin /></ProtectedRoute>}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/register' element={<Register />}></Route>
         </Routes>

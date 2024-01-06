@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { Form, Button, message } from "antd";
-import { Link } from "react-router-dom";
-import { RegisterUser, navigate } from "../apicalls/users";
+import { Link, useNavigate } from "react-router-dom";
+import { RegisterUser } from "../apicalls/users";
 
 const Register = () => {
+  const navigate = useNavigate()
   useEffect(() => {
     if(localStorage.getItem("token")) {
       navigate("/")

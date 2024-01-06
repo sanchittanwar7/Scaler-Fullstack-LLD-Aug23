@@ -17,7 +17,7 @@ const Login = () => {
       if (response.success) {
         message.success(response.message);
         localStorage.setItem('token', response.data)
-        navigate('/')
+        // navigate('/')
       } else {
         message.error(response.message);
       }
