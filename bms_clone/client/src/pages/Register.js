@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Form, Button, message } from "antd";
 import { Link } from "react-router-dom";
-import { RegisterUser } from "../apicalls/users";
+import { RegisterUser, navigate } from "../apicalls/users";
 
 const Register = () => {
+  useEffect(() => {
+    if(localStorage.getItem("token")) {
+      navigate("/")
+    }
+  }, [])
   const onFinish = async (values) => {
     try {
       const response = await RegisterUser(values);
       if (response.success) {
         message.success(response.message);
-        window.location.href = '/'
+        navigate('/')
       } else {
         message.error(response.message);
       }
