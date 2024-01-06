@@ -21,3 +21,14 @@ export const LoginUser = async (payload) => {
         return error
     }  
 }
+
+// Get current user
+
+export const GetCurrentUser = async () => {
+    try {
+        const response = await axiosInstance.get('api/users/currentUser')
+        return response.data
+    } catch (error) {
+        return error
+    }  
+}

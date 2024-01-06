@@ -9,13 +9,14 @@ import "./stylesheets/alignments.css"
 import "./stylesheets/custom.css"
 import "./stylesheets/form-elements.css"
 import "./stylesheets/sizes.css"
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Home />}></Route>
+          <Route path='/' element={<ProtectedRoute><Home /></ProtectedRoute>}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/register' element={<Register />}></Route>
         </Routes>
