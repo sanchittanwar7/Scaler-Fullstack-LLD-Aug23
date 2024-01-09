@@ -29,24 +29,23 @@ function MoviesList() {
     }
   };
 
-  // const handleDelete = async (movieId) => {
-  //   try {
-  //     dispatch(ShowLoading());
-  //     const response = await DeleteMovie({
-  //       movieId,
-  //     });
-  //     if (response.success) {
-  //       message.success(response.message);
-  //       getData();
-  //     } else {
-  //       message.error(response.message);
-  //     }
-  //     dispatch(HideLoading());
-  //   } catch (error) {
-  //     dispatch(HideLoading());
-  //     message.error(error.message);
-  //   }
-  // };
+  const handleDelete = async (movieId) => {
+    try {
+      dispatch(ShowLoading());
+
+      const response = await DeleteMovie({movieId});
+      if (response.success) {
+        message.success(response.message);
+        getData();
+      } else {
+        message.error(response.message);
+      }
+      dispatch(HideLoading());
+    } catch (error) {
+      dispatch(HideLoading());
+      message.error(error.message);
+    }
+  };
 
   const columns = [
     {
@@ -100,9 +99,9 @@ function MoviesList() {
           <div className="flex gap-1">
             <i
               className="ri-delete-bin-line"
-              // onClick={() => {
-              //   handleDelete(record._id);
-              // }}
+              onClick={() => {
+                handleDelete(record._id);
+              }}
             ></i>
             <i
               className="ri-pencil-line"

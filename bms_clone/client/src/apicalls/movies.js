@@ -13,9 +13,26 @@ export const GetAllMovies = async () => {
 
 export const AddMovie = async (payload) => {
     try {
-        console.log(payload)
         const response = await axiosInstance.post("api/movies/add", payload)
-        console.log(response)
+        return response.data
+    } catch (error) {
+        return error
+    }
+}
+
+export const DeleteMovie = async (payload) => {
+    try {
+        console.log(payload)
+        const response = await axiosInstance.post("api/movies/delete", payload)
+        return response.data
+    } catch (error) {
+        return error
+    }
+}
+
+export const UpdateMovie = async (payload) => {
+    try {
+        const response = await axiosInstance.put("api/movies/update", payload)
         return response.data
     } catch (error) {
         return error
