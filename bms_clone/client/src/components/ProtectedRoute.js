@@ -16,7 +16,6 @@ const ProtectedRoute = ({children}) => {
             dispatch(ShowLoading())
             // make API call to get current user
             const response = await GetCurrentUser()
-            console.log(response)
             // hide loader
             dispatch(HideLoading())
             if(response.success) {          
@@ -43,8 +42,6 @@ const ProtectedRoute = ({children}) => {
             navigate("/login")
         }        
     }
-
-    console.log(user)
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
@@ -78,7 +75,7 @@ const ProtectedRoute = ({children}) => {
                     }
                   }}
                 >
-                  {user.email}
+                  {user.name}
                 </h1>
     
                 <i
