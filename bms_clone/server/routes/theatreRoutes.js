@@ -35,6 +35,23 @@ router.get('/getAllTheatresByOwnerId/:userId', async (req, res) => {
     }
 })
 
+router.get('/getAllTheatres', async (req, res) => {
+    try {
+        const theatres = await Theatre.find().populate('owner')
+        res.send({
+            success: true,
+            message: 'Theatres fetched successfully',
+            data: theatres
+        })
+    } catch (error) {
+        res.send({
+            success: false,
+            message: 'Something went wrong',
+            data: error
+        })
+    }
+})
+
 router.post('/delete', async (req, res) => {
     try {
         await Theatre.findByIdAndDelete(req.body.theatreId)

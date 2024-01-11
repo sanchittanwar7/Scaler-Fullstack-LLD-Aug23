@@ -1,10 +1,18 @@
 const { axiosInstance } = require('.')
 
-// Get all movies
-
 export const GetAllTheatresByOwner = async (userId) => {
     try {
         const response = await axiosInstance.get(`api/theatre/getAllTheatresByOwnerId/${userId}`)
+        return response.data
+    } catch (error) {
+        return error
+    }    
+}
+
+
+export const GetAllTheatres = async () => {
+    try {
+        const response = await axiosInstance.get('api/theatre/getAllTheatres')
         return response.data
     } catch (error) {
         return error
