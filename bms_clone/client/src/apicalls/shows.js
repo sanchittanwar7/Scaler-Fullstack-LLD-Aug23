@@ -28,15 +28,14 @@ export const AddShow = async (payload) => {
     }
 }
 
-// export const DeleteTheatre = async (payload) => {
-//     try {
-//         console.log(payload)
-//         const response = await axiosInstance.post("api/theatre/delete", payload)
-//         return response.data
-//     } catch (error) {
-//         return error
-//     }
-// }
+export const DeleteShow = async (showId) => {
+    try {
+        const response = await axiosInstance.post("api/shows/delete", showId)
+        return response.data
+    } catch (error) {
+        return error
+    }
+}
 
 // export const UpdateTheatre = async (payload) => {
 //     try {

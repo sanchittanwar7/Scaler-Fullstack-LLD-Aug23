@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Col, Form, Modal, Row, Table, message } from "antd";
 import Button from "../../../components/Button";
-import { GetAllShowsByTheatre, AddShow } from "../../../apicalls/shows";
+import { GetAllShowsByTheatre, AddShow, DeleteShow } from "../../../apicalls/shows";
 import { HideLoading, ShowLoading } from "../../../redux/loadersSlice";
 import { GetAllMovies } from "../../../apicalls/movies";
 import moment from 'moment'
@@ -34,6 +34,23 @@ const Shows = ({ openShowsModal, setOpenShowsModal, theatre }) => {
       dispatch(HideLoading());
     }
   };
+
+  const handleDelete = async (showId) => {
+    try {
+      dispatch(ShowLoading());
+      const response = await DeleteShow({showId});
+      if (response.success) {
+        message.success(response.message);
+        getData();
+      } else {
+        message.error(response.message);
+      }
+      dispatch(HideLoading());
+    } catch (error) {
+      message.error(error.message);
+      dispatch(HideLoading());
+    }
+  }
 
   const handleAddShow = async (values) => {
     try {
@@ -104,9 +121,9 @@ const Shows = ({ openShowsModal, setOpenShowsModal, theatre }) => {
             {record.bookedSeats.length === 0 && (
               <i
                 className="ri-delete-bin-line"
-                // onClick={() => {
-                //   handleDelete(record._id);
-                // }}
+                onClick={() => {
+                  handleDelete(record._id);
+                }}
               ></i>
             )}
           </div>

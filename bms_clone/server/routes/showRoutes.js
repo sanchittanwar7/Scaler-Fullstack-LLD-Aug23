@@ -35,6 +35,22 @@ router.get('/getAllShowsByTheatreId/:theatreId', async (req, res) => {
     }
 })
 
+router.post('/delete', async (req, res) => {
+    try {
+        console.log(req.body)
+        await Show.findByIdAndDelete(req.body.showId)
+        res.send({
+            success: true,
+            message: 'Show deleted successfully'
+        })
+    } catch (error) {
+        res.send({
+            success: false,
+            message: 'Something went wrong',
+        })
+    }
+})
+
 // router.get('/getAllTheatres', async (req, res) => {
 //     try {
 //         const theatres = await Theatre.find().populate('owner')
@@ -52,20 +68,7 @@ router.get('/getAllShowsByTheatreId/:theatreId', async (req, res) => {
 //     }
 // })
 
-// router.post('/delete', async (req, res) => {
-//     try {
-//         await Theatre.findByIdAndDelete(req.body.theatreId)
-//         res.send({
-//             success: true,
-//             message: 'Theatre deleted successfully'
-//         })
-//     } catch (error) {
-//         res.send({
-//             success: false,
-//             message: 'Something went wrong',
-//         })
-//     }
-// })
+
 
 // router.put('/update', async (req, res) => {
 //     try {
