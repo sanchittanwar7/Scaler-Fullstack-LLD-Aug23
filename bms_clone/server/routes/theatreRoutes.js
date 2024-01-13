@@ -35,6 +35,13 @@ router.get('/getAllTheatresByOwnerId/:userId', async (req, res) => {
     }
 })
 
+router.get('/getTheatresByMovieId/:movieId', async (req, res) => {
+    res.send({
+        success: true
+    })
+})
+
+
 router.get('/getAllTheatres', async (req, res) => {
     try {
         const theatres = await Theatre.find().populate('owner')

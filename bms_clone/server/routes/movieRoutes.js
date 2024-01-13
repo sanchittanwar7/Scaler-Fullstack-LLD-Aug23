@@ -34,6 +34,24 @@ router.get('/getAllMovies', async (req, res) => {
     }
 })
 
+router.get('/getMovieById/:movieId', async (req, res) => {
+    try {
+        const movieId = req.params.movieId
+        const movie = await Movie.findOne({_id: movieId})
+        res.send({
+            success: true,
+            message: 'Movie fetched successfully',
+            data: movie
+        })
+    } catch (error) {
+        res.send({
+            success: false,
+            message: 'Something went wrong',
+            data: error
+        })
+    }
+})
+
 router.post('/delete', async (req, res) => {
     try {
         await Movie.findByIdAndDelete(req.body.movieId)

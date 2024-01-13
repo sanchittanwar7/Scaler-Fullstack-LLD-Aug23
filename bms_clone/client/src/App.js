@@ -20,11 +20,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<ProtectedRoute><Home /></ProtectedRoute>}></Route>
+          <Route path='/movie/:movieId' element={<ProtectedRoute><TheatresForMovie /></ProtectedRoute>}></Route>
           <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute>}></Route>
           <Route path='/admin' element={<ProtectedRoute><Admin /></ProtectedRoute>}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/register' element={<Register />}></Route>
-          <Route path='/movie/:movieId' element={<ProtectedRoute><TheatresForMovie /></ProtectedRoute>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
